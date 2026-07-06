@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Research | James Wedgwood</title>
+    <link rel="icon" href="images/icons/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="images/icons/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="research-page">
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link glow-blue" href="index.html">home</a>
+        <a class="nav-link glow-yellow" href="research.html" aria-current="page">research</a>
+        <a class="nav-link glow-pink" href="cv.pdf" target="_blank" rel="noopener" type="application/pdf">cv</a>
+        <a class="nav-link glow-orange" href="posts.html">posts</a>
+        <a class="nav-link glow-green" href="languages.html">languages / ranch / etc</a>
+      </nav>
+    </header>
+
+    <main class="research-shell">
+      <section class="research-section" aria-labelledby="ongoing-projects">
+        <h1 id="ongoing-projects">Ongoing Projects</h1>
+
+        <article class="research-entry">
+          <figure class="media-strip" aria-label="Magnetohydrodynamics simulation slices">
+            <img src="images/mhd/mhd1024_256_pressure_as_rho_slice.webp" alt="Magnetohydrodynamics density pressure slice">
+            <img src="images/mhd/mhd1024_256_B_x_slice.webp" alt="Magnetohydrodynamics magnetic field x slice">
+            <img src="images/mhd/mhd1024_256_u_x_slice.webp" alt="Magnetohydrodynamics velocity x slice">
+          </figure>
+          <h2>Conserved Quantities in Magnetohydrodynamics (with Barnabas Poczos)</h2>
+          <p class="research-copy">
+            The study of conserved quantities is central to many branches of physics, but ML-driven discovery of
+            such quantities has largely focused on simple systems with few independent variables. My summer 2026 research
+            aims to use ML techniques to find conserved quantities (like the infamous <a href="https://arxiv.org/abs/2012.01393">Hosking invariant</a>)
+            in the much richer setting of 3D magnetohydrodynamics, by applying methods from multi-fidelity
+            Bayesian optimization, level-set estimation, and Bayesian quadrature.
+          </p>
+        </article>
+
+        <article class="research-entry">
+          <figure class="media-frame media-frame-wide">
+            <img src="images/safety_nudges.png" alt="Safety nudges interface screenshot">
+          </figure>
+          <h2>Open-Reflection / Safety Nudges (with Chhavi Yadav and Virginia Smith)</h2>
+          <p class="research-copy">
+            The overwhelming majority of consumer interactions with LLMs take place through a small handful of online chatbot interfaces.
+            Despite a recent surge of interest in AI safety interventions, these theoretical advancements are irrelevant to such users
+            unless the companies that own those interfaces choose to implement them — which is, of course, hardly a guarantee.
+            The Open-Reflection project aims to return agency to end-users by providing a Chrome extension (Safety Nudges) that screens chatbot conversations
+            in real time for common pitfalls like flattery, overconfidence, and anthropomorphization,
+            as well as associated datasets to help the community understand how these issues manifest in the real world.
+          </p>
+          <p class="research-copy">
+            Learn more about <a href="https://open-reflection.com/">Open-Reflection</a> or download <a href="https://chromewebstore.google.com/detail/safety-nudges/hbllljbafenpnhjbljhhpjfdgpookenc">Safety Nudges</a> on the Chrome Web Store.
+          </p>
+        </article>
+      </section>
+
+      <img class="section-delimiter" src="images/delimiter.png" alt="" aria-hidden="true">
+
+      <section class="research-section publications" aria-labelledby="publications">
+        <h1 id="publications">Publications</h1>
+
+        <article class="publication-entry">
+          <div class="publication-heading">
+            <h2>Personalization, Personas, and Forecasting in Value Alignment</h2>
+            <div class="publication-links" aria-label="Publication links">
+              <a class="social-link document-link" href="https://openreview.net/pdf?id=MSw1mCdoRD" aria-label="OpenReview PDF">
+                <svg viewBox="0 0 64 64" aria-hidden="true">
+                  <path class="pdf-page" d="M18 4h28l12 12v44H18Z"></path>
+                  <path class="pdf-fold" d="M46 4v13h12"></path>
+                  <rect class="pdf-label" x="6" y="24" width="46" height="24" rx="4"></rect>
+                  <text x="29" y="41" text-anchor="middle">PDF</text>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="byline"><strong>James Wedgwood</strong>, Pratiksha Thaker, Neil Kale &amp; Virginia Smith</p>
+          <p class="venue">Pluralistic Alignment Workshop, ICML 2026</p>
+          <p class="research-copy">
+            Apparently similar strategies for conditioning LLM responses to value-driven questions
+            yield surprisingly different outcomes — with remarkable consistency across model families.
+          </p>
+        </article>
+
+        <article class="publication-entry">
+          <div class="publication-heading">
+            <h2>DSPA: Dynamic SAE Steering for Data-Efficient Preference Alignment</h2>
+            <div class="publication-links" aria-label="Publication links">
+              <a class="social-link arxiv-link" href="https://arxiv.org/abs/2603.21461" aria-label="arXiv">
+                <span class="arxiv-wordmark" aria-hidden="true">
+                  <span>ar</span><img src="images/icons/arxiv-x.svg" alt=""><span>iv</span>
+                </span>
+              </a>
+              <a class="social-link" href="https://github.com/jtbwedgwood/dspa" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C18 4.8 19 5.1 19 5.1c.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="byline"><strong>James Wedgwood</strong>, Aashiq Muhamed, Mona T. Diab &amp; Virginia Smith</p>
+          <p class="venue">Workshop on Representational Alignment (Re-Align), ICLR 2026</p>
+          <p class="research-copy">
+            Sparse autoencoder (SAE) steering is an attractive alternative to traditional preference optimization
+            due to its inherent interpretability. We present a prompt-conditional steering technique that is lightweight, effective,
+            and highly robust to low-data settings.
+          </p>
+        </article>
+
+        <article class="publication-entry">
+          <div class="publication-heading">
+            <h2>Automated Concept Discovery for LLM-as-a-Judge Preference Analysis</h2>
+            <div class="publication-links" aria-label="Publication links">
+              <a class="social-link arxiv-link" href="https://arxiv.org/abs/2603.03319" aria-label="arXiv">
+                <span class="arxiv-wordmark" aria-hidden="true">
+                  <span>ar</span><img src="images/icons/arxiv-x.svg" alt=""><span>iv</span>
+                </span>
+              </a>
+              <a class="social-link" href="https://github.com/jtbwedgwood/judge-concepts" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C18 4.8 19 5.1 19 5.1c.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="byline"><strong>James Wedgwood</strong>, Chhavi Yadav &amp; Virginia Smith</p>
+          <p class="venue">Workshop on Unifying Concept Representation Learning, ICLR 2026 (<strong>Oral</strong>)</p>
+          <p class="research-copy">
+            LLM judges are used widely across a multitude of settings. This paper is the first to attempt a systematic, automated
+            analysis of their preference drivers without reliance on predefined bias taxonomies.
+          </p>
+        </article>
+
+        <article class="publication-entry publication-with-image">
+          <img class="papyrus-image" src="images/papyrus_transparent.png" alt="Papyrus fragment">
+          <div class="publication-heading">
+            <h2>P.CtYBR Inv. 708(A) and (B): A Letter from the Prefect and a Court Summons</h2>
+            <div class="publication-links" aria-label="Publication links">
+              <a class="social-link jstor-link" href="https://www.jstor.org/stable/48775141" aria-label="JSTOR">
+                <img src="images/icons/jstor-favicon.png" alt="">
+              </a>
+            </div>
+          </div>
+          <p class="byline"><strong>James Wedgwood</strong></p>
+          <p class="venue">Zeitschrift für Papyrologie und Epigraphik 219, 2021, pp. 161–166</p>
+          <p class="research-copy">
+            Several years before I became interested in machine learning, I spent my junior summer of college
+            in Heidelberg, Germany, studying Ancient Greek papyri; this paper was the result. I've always been fascinated
+            by ancient documents and hope to someday revisit the field of papyrology from a ML perspective.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
