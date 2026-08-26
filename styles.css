@@ -413,8 +413,7 @@ h1 {
   min-width: 0;
 }
 
-.post-title,
-.post-arrow {
+.post-title {
   color: var(--text);
   transition: color 600ms ease;
 }
@@ -449,7 +448,7 @@ body.post-page {
 .article-header h1 {
   max-width: 820px;
   margin-bottom: 22px;
-  font-size: clamp(3rem, 5.2vw, 5.4rem);
+  font-size: clamp(3rem, 4vw, 3.7rem);
   line-height: 0.94;
 }
 
@@ -530,12 +529,6 @@ body.post-page {
   margin: 2.8em auto 3.1em;
 }
 
-.article-figure-wide {
-  width: min(78vw, 1160px);
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
 .article-figure img {
   display: block;
   width: 100%;
@@ -588,8 +581,17 @@ body.post-page {
 
 .endnote-ref {
   font-size: 0.72em;
+  font-weight: 700;
   line-height: 0;
   vertical-align: super;
+}
+
+.endnote-ref a::before {
+  content: "[";
+}
+
+.endnote-ref a::after {
+  content: "]";
 }
 
 .endnotes {
@@ -622,36 +624,6 @@ body.post-page {
   font-size: clamp(1.19rem, 1.95vw, 1.88rem);
   line-height: 1.1;
   white-space: nowrap;
-}
-
-.post-arrow {
-  display: inline-grid;
-  place-items: center;
-  width: 22px;
-  height: 22px;
-  flex: 0 0 auto;
-  text-decoration: none;
-  transform: translateY(-4px);
-  transition: transform 180ms ease, color 600ms ease;
-}
-
-.post-arrow:hover,
-.post-arrow:focus-visible {
-  transform: translate(2px, -7px) rotate(-1deg);
-}
-
-.post-arrow:active {
-  transform: translateY(-4px);
-}
-
-.post-arrow svg {
-  width: 23px;
-  height: 23px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
 .research-shell {
@@ -1041,10 +1013,6 @@ body.post-page {
     padding-top: 62px;
   }
 
-  .article-figure-wide {
-    width: min(92vw, 980px);
-  }
-
   .post-list {
     padding-left: 0;
   }
@@ -1128,10 +1096,6 @@ body.post-page {
   .article-body {
     font-size: 1.04rem;
     line-height: 1.62;
-  }
-
-  .article-figure-wide {
-    width: calc(100vw - 20px);
   }
 
   .article-takeaways {
