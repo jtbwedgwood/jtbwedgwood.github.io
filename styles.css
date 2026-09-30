@@ -732,6 +732,10 @@ body.post-page {
   margin-top: 0;
 }
 
+.publication-links.safety-nudges-links {
+  gap: 8px;
+}
+
 .publication-links .social-link {
   width: 26px;
   height: 26px;
