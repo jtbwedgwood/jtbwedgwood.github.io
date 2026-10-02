@@ -464,6 +464,12 @@ body.post-page {
   line-height: 1.66;
 }
 
+/* Avoid Timeless’s overlapping hyphen/number kerning in model names. */
+.article-body .model-name {
+  font-kerning: none;
+  white-space: nowrap;
+}
+
 .article-body p {
   margin: 0 0 1.35em;
 }

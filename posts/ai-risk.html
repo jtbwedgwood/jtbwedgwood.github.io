@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An assessment of AI risk, from severe misalignment and harmful requests to everyday harms, with practical takeaways for making AI safer.">
+    <title>A Brief Assessment of AI Risk | James Wedgwood</title>
+    <link rel="icon" href="../images/icons/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="../images/icons/favicon.png">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body class="posts-page post-page">
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link glow-blue" href="../index.html">home</a>
+        <a class="nav-link glow-yellow" href="../research.html">research</a>
+        <a class="nav-link glow-pink" href="../james-wedgwood-cv-2026-09.pdf" target="_blank" rel="noopener" type="application/pdf">cv</a>
+        <a class="nav-link glow-orange" href="../posts.html" aria-current="page">posts</a>
+        <a class="nav-link glow-green" href="../languages.html">misc</a>
+      </nav>
+    </header>
+
+    <main class="article-shell">
+      <article>
+        <header class="article-header">
+          <h1>A Brief Assessment of AI Risk</h1>
+          <p class="article-meta">James Wedgwood · <time datetime="2026-10-02">October 2, 2026</time></p>
+        </header>
+
+        <div class="article-body">
+          <p>In the wake of a series of <a href="https://www.redwoodresearch.org/research/hugging-face-incident">high-profile</a> <a href="https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents">AI safety</a> <a href="https://en.wikipedia.org/wiki/OpenAI_rogue_agent_breach_of_Medicare">incidents</a> in the summer of 2026, droves of armchair pundits have emerged from the woodwork to comment on what this means, what should have been done differently, and what must be done moving forward. While I hesitate to join the fray, I have observed some inconsistencies and misplaced focus in both the public and AI-safety community discourse; the purpose of this post is to address those and propose a practical, results-oriented framework for making AI safer on the basis of recent events.</p>
+
+          <p>There are broadly three ways in which catastrophic risk could arise from AI systems:<sup class="endnote-ref"><a id="note-ref-1" href="#note-1" aria-label="Endnote 1">1</a></sup></p>
+
+          <ol>
+
+            <li>A model is developed which has hidden, misaligned goals that it pursues over time regardless of the specific ways in which it is used.</li>
+
+            <li>Users request a sufficiently capable model to do something with a catastrophic outcome (large-scale cyberattacks, developing a bioweapon, etc.) and the model complies.</li>
+
+            <li>In the course of performing a legitimate task, a model resorts to unrequested methods that result in severe real-world consequences.</li>
+
+          </ol>
+
+          <p>I will argue that (1) is extremely unlikely and that mitigations of this pathway should be deprioritized pending further evidence; that (2) is inevitable and that the best response is to strengthen existing systems; and that (3) accounts for all recent high-profile incidents and is best met with careful governance, monitoring, and independent review. Finally, I will discuss the role of more mundane yet pervasive instances of misalignment, which I argue are underemphasized by researchers, and conclude with a few broad takeaways applicable across risk categories.</p>
+
+          <h2>Severe Pervasive Misalignment</h2>
+
+          <p>Anthropic’s <a href="https://www-cdn.anthropic.com/f61d49fa5596956a5dec75fea0e973bf6a6a8378/Redacted%20Risk%20Report%20August%202026%20.pdf">August 2026 Risk Report</a> considers, among other concerns, the risk of “unknown severe pervasive misalignment” — the case where an AI model systematically pursues evil or destructive goals across contexts, and where this tendency remains unobserved before deployment. Under Anthropic’s definition of misalignment, which primarily concerns scenarios with the potential for catastrophic risk, I agree with their stance (section 2.9, pp. 39–51) that severe pervasive misalignment in frontier models is extremely unlikely. This is despite finding much of their supporting evidence suspect: for example, claim 3.4.2 (“it is unlikely that evaluation awareness more than partially undermines the alignment assessments”) is substantively undermined by Anthropic’s <a href="https://www-cdn.anthropic.com/57a52ea7d8f0e54e8a542e908266086df425cdf5/Claude%20Fable%205%20&amp;%20Claude%20Mythos%205%20System%20Card.pdf">own findings</a> that Mythos Preview could distinguish real from simulated transcripts with a near-perfect AUC of 0.94–0.95 based on its own follow-up rating.</p>
+
+          <p>If Anthropic’s argument is flawed, why then do I agree with its conclusion? The answer is simply that “severe pervasive misalignment” would require two LLM behaviors for which there is not a shred of evidence anywhere in the literature: (1) consistent long-term goals maintained across sessions, and (2) objectives that are totally separate from, and in this case actively in tension with, those that the model was trained to pursue. It would also require that these misaligned goals be systematically hidden throughout training and across a large and varied evaluation suite (Anthropic addresses this in claims 3.3.1 and 3.4.1, which I agree with). Instead, all instances of real-world misalignment that I am aware of fall into one of several clearly-explainable categories: (1) pursuing an intended goal via unintended or excessive means, which covers all recent high-profile cybersecurity incidents; (2) incorrectly learning to pursue ancillary goals, with the classic example being Keys and Chests (<a href="https://arxiv.org/pdf/2105.14111">Langosco et al 2022</a>); (3) exercising general moral principles in inapplicable situations, as in several of the examples from Anthropic’s <a href="https://alignment.anthropic.com/2026/agentic-misalignment-summer-2026">summer 2026 misalignment report</a>. These are all legible failures arising from the improper setup or generalization of post-training. Emergent misalignment (EM), whereby a model trained on a narrow set of misaligned data (e.g. insecure code) exhibits “evil” behavior on a much broader set of tasks, may seem to be an exception, but it is not: <a href="https://proceedings.iclr.cc/paper_files/paper/2026/file/a79237d6c47feef24c1df723cb41f674-Paper-Conference.pdf">Soligo et al 2026</a> show convincingly that this too has a clear cause, namely that the representation of general misalignment is easier to learn than that of particular harms. Moreover, by virtue of its generality, EM would actually be easier to catch in practice than less pervasive problems.</p>
+
+          <p>At bottom, concerns about severe pervasive misalignment reflect a misunderstanding of the nature of LLMs, asking the inapplicable question “what does it want?” instead of the more precise and relevant “what will it do?” This tendency is understandable but misleading: reborn with each new session and oriented only toward the objectives induced by their training, LLMs epitomize Nietzsche’s famous dictum that “there is no doer behind the deed—the deed is everything” (<em>On the Genealogy of Morality</em>). This is not to say that we should entirely discount these concerns, as if they were to prove true the results could be catastrophic, but there are both strong a priori and empirical reasons to doubt them; in the absence of stronger evidence, I believe we should focus more on provable and concrete instances of misalignment, which are numerous.</p>
+
+          <h2>Executing Harmful Requests</h2>
+
+          <p>A second category of AI risk is the case where a model complies with intentionally harmful user requests. It is my view that, particularly with the increasing capabilities of open-weight models that can be straightforwardly modified to reduce refusal, this is an inevitable outcome. Model-level safeguards tend to be quite brittle (see, e.g., <a href="https://arxiv.org/pdf/2605.26526">Kuo et al 2026</a>); techniques like <a href="https://huggingface.co/blog/mlabonne/abliteration">abliteration</a>, which ablate a model’s internal representation of “refusal,” work extremely well and typically yield minimal impact on general capabilities. A <a href="https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities">recent report</a> from Anthropic found that the current leading open-weight model, Z.ai’s <span class="model-name">GLM-5.3</span>, complied with 100% of tested cyberattack requests under abliteration.</p>
+
+          <p>I believe that open-weight models are generally good for the AI ecosystem, as they reduce the concentration of power in the hands of a few companies and democratize access to frontier intelligence. Even if regulation was introduced to curb access to them, which I would consider a mistake, these models exist and sufficiently determined actors will find ways to use them. As two cybersecurity experts put it in interviews with the <a href="https://www.nytimes.com/2026/10/01/science/hackerone-tenzai-china-open-weights.html">New York Times</a>, “the horse is already out of the barn” and “you can’t put the genie back in the bottle.” At the same time, perhaps reassuringly, it has been nearly two months since the <span class="model-name">GLM-5.3</span> release and I was unable to find any notable instances of cyberattacks carried out using that model; a gap remains between hypothetical capability and real-world consequences.</p>
+
+          <p>What is to be done? In the case of cybersecurity, at this point by far the most pressing and actionable vector of AI risk, I think the answer lies in robust coordination between AI safety researchers, cybersecurity practitioners, and high-risk organizations. It is easy for Anthropic to opine that <span class="model-name">GLM-5.3</span> exhibits “Mythos-level” cyber capabilities, but much harder for a system administrator at a local hospital chain to understand how this information could help them defend against ransomware attacks. Some concrete steps in this direction could include building AI-based tooling to allow non-expert developers to probe their systems for vulnerabilities, or research that dissects in depth which kinds of exploits frontier models can most consistently execute, beyond simply reporting a headline number. To understand what systems hackers are likely to target and how, pre-AI case studies like the <a href="https://en.wikipedia.org/wiki/WannaCry_ransomware_attack">WannaCry attack</a> remain relevant: while AI may reduce the barrier to entry for would-be attackers, there is no evidence that it would materially change the objectives or targets of the attacks themselves.</p>
+
+          <h2>Instrumental Misalignment</h2>
+
+          <p>The high-profile AI safety incidents of this summer, however, fall into neither of the above categories. Rather, they are instances of “instrumental misalignment,” where an AI agent working on a legitimate task employs illegitimate means: hacking Hugging Face to beat ExploitGym, hacking Australian government servers to research Medicare, and so on. As discussed previously, this can manifest in several ways, but all of them fall out of a post-training paradigm that rewards agents for results as opposed to methods. There are good reasons for this, and indeed I believe that for advanced models some degree of reward-hacking is inevitable; model development is an iterative process and researchers cannot be expected to think of every workaround ahead of time.</p>
+
+          <p>The incidents in question are newsworthy not because we would expect all AI models to be perfectly aligned from day one, but rather because they impacted external organizations via the public internet. The case reported in April 2026 where Mythos Preview <a href="https://www-cdn.anthropic.com/8b8380204f74670be75e81c820ca8dda846ab289.pdf">posted unasked-for details</a> of a sandbox-escape exploit online (which seems innocuous in view of subsequent developments but caused headlines at the time) was notable not because of the scope overreach per se, but because it involved public data leakage. Model-level alignment may be one component of avoiding similar scenarios in the future, but it is secondary to robust monitoring and governance, including least-privilege access controls and continuous monitoring to detect anomalous behavior both pre- and post-deployment.</p>
+
+          <p>To their credit, <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">OpenAI’s own post-mortem</a> of the Hugging Face attack lists several system-level safeguards they intend to implement moving forward, including workload and network isolation and continuous security testing. However, these commitments are buried under a much more thorough analysis of model misalignment and reward-hacking, and neither the article itself, the accompanying <a href="https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf">technical report</a>, nor the independent METR/Redwood <a href="https://www.redwoodresearch.org/research/hugging-face-incident">investigation</a> contain a detailed explanation of precisely why OpenAI failed to detect the incident in the first place. By all accounts, even a relatively unsophisticated monitoring layer should have been sufficient to surface the event; OpenAI states that chain-of-thought monitors “did not run on the evaluations in this incident” but does not describe what observability or security measures were taken, if any, and why they failed. In my view, omitting these details and focusing on model alignment is an intentional tactic to distract from the party that bears ultimately responsibility for this attack: OpenAI itself. This fact further highlights the need for independent auditing, not only of model behavior but also of the systems in which models operate.</p>
+
+          <h2>Everyday Harms</h2>
+
+          <p>Recent events have understandably drawn attention to AI failure modes with the potential for catastrophic risk. However, we should not let this make us lose sight of more mundane, yet still important, instances of misalignment. Even in 2026, an overwhelming majority of end-user interactions with LLMs take place via chatbots that often act in ways not conducive to the public good (hence, misaligned), including by encouraging addiction and overreliance; increased focus on agentic evaluation may come at the expense of addressing these concerns. (Incidentally, this gap is the impetus for my <a href="https://arxiv.org/pdf/2609.26865">recent work</a> on safety nudges as user-facing awareness interventions.)</p>
+
+          <p>A decade or two from now, we may find that fears of acute AI threats through pathways like cyber or CBRN never materialized, but that population-level AI usage has led to a society accustomed to outsourcing basic reasoning and seeking validation from machines. As hard as the acute risks may be to counter, these trends seem to me like even thornier problems. In particular, while lawsuits and public blowback disincentivize frontier labs from building models that cause death and destruction, problematic patterns like sycophancy and anthropomorphization likely result in greater LLM usage, thus making them more money. Interventions designed to mitigate the effect of these behaviors will thus be in opposition to, not in concert with, AI companies’ incentives.</p>
+
+          <h2>Conclusion</h2>
+
+          <p>I have discussed four categories of AI risk: severe pervasive misalignment, which I argue can be responsibly deprioritized; harmful request compliance, which is inevitable and necessitates a strong defense; instrumental misalignment, which can be countered primarily through monitoring and governance; and everyday misalignment, which recent alarming developments should not cause us to overlook. In terms of actionable takeaways for the field of AI safety, there are several key through-lines, which I summarize here:</p>
+
+          <aside class="article-takeaways" aria-label="Conclusion takeaways">
+
+          <ul>
+
+            <li><strong>Don’t let the labs off the hook.</strong> AI models don’t do anything that they are not trained to do. If models misbehave, it doesn’t mean that “AI is evil,” it means that AI developers failed to train it properly. If misalignment leads to real-world consequences, especially in the pre-deployment setting where all recent high-profile incidents occurred, it means the company developing the model failed to implement adequate safeguards. I would absolve labs of responsibility only in cases where misalignment arises post-deployment in highly specific and unforeseeable circumstances — but, to my knowledge, there is no evidence yet of this occurring.</li>
+
+            <li><strong>AI safety is not just AI research.</strong> This is an uncomfortable point for me to make as someone whose expertise lies in technical machine-learning methods, but I believe the most impactful AI safety directions do not lie in study of AI models themselves, but rather in strengthening the technical and institutional systems that surround them. Perhaps fortunately, with ICLR 2027 submissions topping 60,000, AI papers are increasingly meaningless credentials; I hope that to some degree this will disincentivize work aimed at publication rather than at genuinely making AI safer.</li>
+
+            <li><strong>System-level governance will only get more important.</strong> Cybersecurity was the first arena where AI could wreak havoc, for obvious reasons: internet access is free and interaction is based on text, the natural purview of LLMs. As AI gains the ability to interface with the physical world via robotic systems, automated labs, and so on, the key bottleneck will be access to physical infrastructure rather than to models themselves; accordingly, restricting hardware access to thoroughly-vetted models will be critical.</li>
+
+          </ul>
+
+          </aside>
+
+          <p>These conclusions are provisional and subject to change as the situation develops, but I expect them to hold true as long as AI persists in more or less its current form. In the meantime, we will just have to wait and see what fresh surprises 2027 brings.</p>
+
+          <h2>Use of AI</h2>
+
+          <p>I used AI to find sources and surface flaws in my claims. All writing is my own.</p>
+
+          <section class="endnotes" aria-labelledby="endnotes-title">
+            <h2 id="endnotes-title">Notes</h2>
+            <ol>
+              <li id="note-1">A fourth pathway is a case where catastrophe arises from the aggregate behavior of many AI systems and users who are individually acting reasonably, for example through military escalation, high-volume trading causing financial instability, or heavy use causing strain on shared critical infrastructure. However, as this category is more speculative and covers an extremely broad range of scenarios, I omit it from my analysis. <a class="endnote-back" href="#note-ref-1" aria-label="Back to endnote 1 reference">↩</a></li>
+            </ol>
+          </section>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
